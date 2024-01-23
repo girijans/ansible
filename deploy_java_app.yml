@@ -22,9 +22,10 @@
         path: "{{ java_app_target_directory }}"
         state: directory
 
-    - name: Download Java Application
-      cp /home/ubuntu/ansible/HelloWorldApp.java /home/ubuntu/ansible/javansible
-      cp {{ java_app_target_directory }}/{{ java_app_jar }} /home/ubuntu/ansible/javansible
+    - name: If follow=yes, /home/ubuntu/ansible/javansible will be overwritten by contents of foo.conf
+      ansible.builtin.copy:
+            src: /etc/foo.conf
+            dest: /home/ubuntu/ansible/javansible  # link to /path/to/file
 
     - name: Restart App Service
       systemd:
