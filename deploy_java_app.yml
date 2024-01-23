@@ -29,6 +29,5 @@
 
     - name: Restart App Service
       systemd:
-      name: "{{ app_service_name }}"
-      state: restarted
-
+         name: "{{ app_service_name }}"
+         state: restarted 
