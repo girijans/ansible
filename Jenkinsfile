@@ -8,7 +8,7 @@ pipeline {
                     ansiblePlaybook(
                         playbook: 'https://github.com/girijans/ansible.git/deploy_java_app.yml',
                         inventory: 'https://github.com/girijans/ansible.git/inventory.ini',
-                        credentialsId: 'your_ansible_cred_id'
+                        credentialsId: 'ansible' # your_ansible_cred_id
                     )
                 }
             }
