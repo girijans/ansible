@@ -7,7 +7,7 @@
     java_app_name: "HelloWorldApp"   # your-java-app
     java_app_version: "1.0.0"
     java_app_jar: "{{ java_app_name }}-{{ java_app_version }}.jar"
-    java_app_download_url: "file://home/ubuntu/ansible/{{ java_app_jar }}"     #"file:///path/to/files/{{ java_app_jar }}"
+    java_app_download_url: "/home/ubuntu/ansible/{{ java_app_jar }}"     #"file:///path/to/files/{{ java_app_jar }}"
     java_app_target_directory: "/opt/{{ java_app_name }}"
     app_service_name: "hello-world-service" # "your-app-service"
 
@@ -23,9 +23,8 @@
         state: directory
 
     - name: Download Java Application
-      get_url:
-        url: "{{ java_app_download_url }}"
-        dest: "{{ java_app_target_directory }}/{{ java_app_jar }}"
+      cp /home/ubuntu/ansible/HelloWorldApp.java /home/ubuntu/ansible/javansible
+      cp {{ java_app_target_directory }}/{{ java_app_jar }} /home/ubuntu/ansible/javansible
 
     - name: Restart App Service
       systemd:
