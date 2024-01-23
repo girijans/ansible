@@ -9,7 +9,7 @@
     java_app_jar: "{{ java_app_name }}-{{ java_app_version }}.jar"
     java_app_download_url: "/home/ubuntu/ansible/{{ java_app_jar }}"     #"file:///path/to/files/{{ java_app_jar }}"
     java_app_target_directory: "/opt/{{ java_app_name }}"
-      #app_service_name: "hello-world-service" # "your-app-service"
+    app_service_name: "hello-world-service" # "your-app-service"
 
   tasks:
     - name: Install Java
@@ -27,8 +27,8 @@
             src: /home/ubuntu/ansible/HelloWorldApp.java
             dest: /home/ubuntu/ansible/javansible  # link to /path/to/file
 
-              #- name: Restart App Service
-              #systemd:
-              #name: "{{ app_service_name }}"
-              #state: restarted
+    - name: Restart App Service
+      systemd:
+      name: "{{ app_service_name }}"
+      state: restarted
 
